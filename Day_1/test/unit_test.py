@@ -1,7 +1,7 @@
 import unittest
 from parameterized import parameterized
 
-from src.calibration_checker import get_first_and_last_number_from_string
+from src.utils import get_first_and_last_number_from_string
 
 
 class CalibrationCheckerTest(unittest.TestCase):
@@ -10,6 +10,14 @@ class CalibrationCheckerTest(unittest.TestCase):
         ("sshnxbjrt1", 11)
     ])
     def test_get_first_and_last_number_from_string(self, input_string, expected):
+        actual = get_first_and_last_number_from_string(input_string)
+        self.assertEqual(expected, actual)
+
+    @parameterized.expand([
+        ("asdfaeightauiafuiew21837ainasdf3ahfjd", 83),
+        ("stwoneshnxbjrt1asd", 21)
+    ])
+    def test_get_first_and_last_number_from_string_when_spelled(self, input_string, expected):
         actual = get_first_and_last_number_from_string(input_string)
         self.assertEqual(expected, actual)
 
