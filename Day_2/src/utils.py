@@ -21,3 +21,21 @@ def is_valid_game(bag_contents: Dict[str, int], game: List[Dict[str, int]]) -> b
             if bag_amount < turn[colour]:
                 return False
     return True
+
+
+def get_minimum_viable_cubes(game: List[Dict[str, int]]) -> Dict[str, int]:
+    minimum_viable_cubes = {"blue": 0,
+                            "red": 0,
+                            "green": 0}
+    for turn in game:
+        for colour, count in turn.items():
+            if count > minimum_viable_cubes[colour]:
+                minimum_viable_cubes[colour] = count
+    return minimum_viable_cubes
+
+
+def get_power(cubes: Dict[str, int]) -> int:
+    power = 1
+    for colour, count in cubes.items():
+        power *= count
+    return power

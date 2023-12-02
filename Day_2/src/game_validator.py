@@ -1,6 +1,6 @@
 import os
 
-from src.utils import parse_game, is_valid_game
+from src.utils import parse_game, is_valid_game, get_minimum_viable_cubes, get_power
 
 bag_contents = {"blue": 14, "red": 12, "green": 13}
 
@@ -17,3 +17,9 @@ if __name__ == "__main__":
         if game.get("validity"):
             sum_total += game.get("game_id")
     print(sum_total)
+
+    total_power = 0
+    for game in games:
+        minimum_viable_cubes = get_minimum_viable_cubes(game["game"])
+        total_power += get_power(minimum_viable_cubes)
+    print(total_power)
